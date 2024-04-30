@@ -11,6 +11,7 @@
 	
     <?php 
     include('header.php');
+	include('display_product.php');
 	?>
 	<script src="js/script.js"></script>
 	
