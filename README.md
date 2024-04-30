@@ -2,7 +2,7 @@
  
 # How to use:
 
-- Clone into xampp/htdocs
+- Clone this repo into xampp/htdocs
 - Run apache and mysql in the xampp control panel
 - Go to localhost/phpmyadmin
 - Import the database from the database folder
