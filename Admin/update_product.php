@@ -1,51 +1,51 @@
-<?php
-include 'connect.php';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Product</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <?php
+    include 'connect.php';
 
-// Check if a product ID is provided in the URL
-if(isset($_GET['id'])) {
-    $product_id = $_GET['id'];
-
-    // Fetch the details of the selected product from the database
-    $query = "SELECT * FROM food_products WHERE id='$product_id'";
-    $result = mysqli_query($con, $query);
-
-    if(mysqli_num_rows($result) > 0) {
-        // Fetch the product details
-        $row = mysqli_fetch_assoc($result);
-        $food_name = $row['food_name'];
-        $food_price = $row['food_price'];
-        $food_description = $row['food_description'];
-        // Add more fields as needed
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $food_id = $_POST['food_id'];
+        $food_name = $_POST['food_name'];
+        $food_price = $_POST['food_price'];
+        $food_description = $_POST['food_description'];
         
-        // Display the update form with the fetched product details
-?>
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Update Product</title>
-            <link rel="stylesheet" href="css/style.css">
-        </head>
-        <body>
-            <h1>Update Product</h1>
-            <form method="post" enctype="multipart/form-data" action="update_process.php">
-                <input type="hidden" name="product_id" value="<?php echo $product_id; ?>">
-                Name: <input type="text" name="food_name" class="input_fields" required value="<?php echo $food_name; ?>"><br>
-                Price: <input type="text" name="food_price" class="input_fields" required value="<?php echo $food_price; ?>"><br>
-                Description: <input type="text" name="food_description" class="input_fields" required value="<?php echo $food_description; ?>"><br>
-                <!-- Add more fields for other product details -->
-                <input type="submit" value="Update">
-            </form>
-        </body>
-        </html>
-<?php
-    } else {
-        echo "Product not found.";
-    }
-} else {
-    echo "Product ID not provided.";
-}
+        $update_query = "UPDATE food_products SET 
+                        food_name='$food_name', 
+                        food_price='$food_price', 
+                        food_description='$food_description' 
+                        WHERE food_id='$food_id'";
 
-mysqli_close($con);
-?>
+        if(mysqli_query($con, $update_query)) {
+            echo "Food item updated successfully!";
+        } else {
+            echo "Error: " . mysqli_error($con);
+        }
+    } else {
+        $food_id = $_GET['id'];
+        $query = "SELECT * FROM food_products WHERE food_id='$food_id'";
+        $result = mysqli_query($con, $query);
+        $row = mysqli_fetch_assoc($result);
+    ?>
+    
+    <h2>Update Product</h2>
+    <form method="post" enctype="multipart/form-data" action="">
+        <input type="hidden" name="food_id" value="<?php echo $row['food_id']; ?>">
+        Name: <input type="text" name="food_name" class="input_fields" value="<?php echo $row['food_name']; ?>" required><br>
+        Price: <input type="text" name="food_price" class="input_fields" value="<?php echo $row['food_price']; ?>" required><br>
+        Description: <input type="text" name="food_description" class="input_fields" value="<?php echo $row['food_description']; ?>" required><br>
+        <input type="submit" value="Update">
+    </form>
+
+    <?php
+    }
+    mysqli_close($con);
+    ?>
+</body>
+</html>
