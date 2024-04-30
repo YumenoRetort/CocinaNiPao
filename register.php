@@ -21,7 +21,7 @@
     </form>
 
     <?php
-    include 'connect.php';
+    include 'Admin/connect.php';
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $customer_name = $_POST['customer_name'];
