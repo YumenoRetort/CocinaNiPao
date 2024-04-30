@@ -11,7 +11,6 @@
 	
 	<?php 
 	include('homepage.php');
-	include('connect.php');
 	
 	?>
 	<script src="js/script.js"></script>
