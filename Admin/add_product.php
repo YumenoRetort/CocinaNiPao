@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Product</title>
     <link rel="stylesheet" href="css/style.css">
+
+    <script src="../js/script.js"></script>
 </head>
 <body>
     <h2>Add Products</h2>
@@ -15,16 +17,6 @@
         Image: <input type="file" name="food_image" class="input_fields" required accept="image/png, image/jpg, image/jpeg"><br>
         <input type="submit" value="Submit">
     </form>
-
-    <h2>All Products</h2>
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Actions</th>
-        </tr>
 
     <?php
     include 'connect.php';
@@ -52,7 +44,20 @@
             echo "Error: " . mysqli_error($con);
         }
     }
+    ?>
 
+    <h2>All Products</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+
+    
+        <?php
         // Fetch all products from the database
         $query_all = "SELECT * FROM food_products";
         $result_all = mysqli_query($con, $query_all);
@@ -65,7 +70,9 @@
                 echo "<td>" . $row_all['food_name'] . "</td>";
                 echo "<td>" . $row_all['food_price'] . "</td>";
                 echo "<td>" . $row_all['food_description'] . "</td>";
-                echo "<td><a href='update_product.php?id=" . $row_all['food_id'] . "'>Update</a></td>";
+                echo "<td><button onclick='openUpdatePopup(" . $row_all['food_id'] . ")'>Update</button>
+                    <button onclick='openDeletePopup(" . $row_all['food_id'] . ")'>Delete</button>
+                </td>";
                 echo "</tr>";
             }
         } else {
