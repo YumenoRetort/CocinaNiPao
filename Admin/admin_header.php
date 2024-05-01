@@ -16,7 +16,7 @@
         <a href="add_product.php">Add Product</a> |
         <a href="add_staff.php">Add Staff</a> |
         <a href="view_orders.php">View Orders</a> |
-        <a href="../login.php">Login</a>
+        <a href="../logout.php">Logout</a>
     </nav>
 
 </header>
