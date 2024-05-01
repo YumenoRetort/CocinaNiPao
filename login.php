@@ -9,6 +9,8 @@
 </head>
 <body>
 
+    <?php include 'header.php'?>
+
     <h2>Login</h2>
 
     <form method="post" action="login.php">
@@ -35,7 +37,20 @@
             header("Location: index.php");
             exit();
         } else {
-            echo "Invalid email or password. Please try again.";
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $query = "SELECT * FROM staff WHERE email='$email' AND password='$password'";
+            $result = mysqli_query($con, $query);
+
+            if (mysqli_num_rows($result) == 1) {
+                //user redirect
+                header("Location: addproduct.php");
+                exit();
+            }
+            else{
+                echo "Invalid email or password. Please try again.";
+            }
         }
     }
     ?>
