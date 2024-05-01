@@ -17,6 +17,9 @@
         <input type="submit" value="Login">
     </form>
 
+    <!-- Make a button -->
+    <a href="register.php" class="button">Signup</a>
+
     <?php
     include 'Admin/connect.php';
 
