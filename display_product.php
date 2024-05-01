@@ -1,3 +1,16 @@
+<?php
+include 'Admin/connect.php';
+if(isset($_POST['add_to_cart'])){
+    $food_name=$POST['food_name'];
+    $food_price=$POST['food_price'];
+    $food_image=$POST['food_image'];
+    $food_quantity=1;
+
+    $insert_products=mysqli_query($con,"insert into 'cart' (name, qty, price, image) value ('$food_name','$food_quantity', '$food_price','$food_image')");
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,24 +25,30 @@
     <h1>Products</h1>
 
     <?php 
-    include 'Admin/connect.php';
-
     $query = "SELECT * FROM food_products";
     $result = mysqli_query($con, $query);
 
     if (mysqli_num_rows($result) > 0) {
         while ($row = mysqli_fetch_assoc($result)) {
-            echo "<div>";
-            echo "<p>Name: " . $row['food_name'] . "</p>";
-            echo "<p>Price: " . $row['food_price'] . "</p>";
-            echo "<p>Description: " . $row['food_description'] . "</p>";
-            echo "<img src='images/images.jpg' alt='Product Image' style='width: 200px; height: 200px;'>";
-            echo "<input type='submit'value='add to cart'>";
-            echo "</div>";
+           
+    ?>
+
+    <form method="post">
+        <div>
+            <img src="images/<?php echo $row['food_image']?>" alt="">
+            <h3><?php echo $row['food_name']?></h3>
+            <div>Price:<?php echo $row['food_price']?></div>
+            <input type="hidden" name="food_name" <?php echo $row['food_name']?>>
+            <input type="hidden" name="food_price" <?php echo $row['food_price']?>>
+            <input type="hidden" name="food_image" <?php echo $row['food_image']?>>
+            <input type="submit" class="submit_btn cart_btn" value="Add to Cart" name="add to_cart">
+        </div>
+    </form>
+
+    <?php 
+        }} else {
+            echo "No products found.";
         }
-    } else {
-        echo "No products found.";
-    }
 
     mysqli_close($con);
     ?>

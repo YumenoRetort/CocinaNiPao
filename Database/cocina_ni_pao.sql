@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2024 at 10:14 AM
+-- Generation Time: May 01, 2024 at 01:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -20,6 +20,22 @@ SET time_zone = "+00:00";
 --
 -- Database: `cocina_ni_pao`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart`
+--
+
+CREATE TABLE `cart` (
+  `cart_id` int(10) NOT NULL,
+  `order_id` int(10) NOT NULL,
+  `food_id` int(10) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `qty` int(10) DEFAULT NULL,
+  `price` int(10) DEFAULT NULL,
+  `img` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -62,7 +78,8 @@ CREATE TABLE `food_products` (
 --
 
 INSERT INTO `food_products` (`food_id`, `food_name`, `food_price`, `food_description`, `food_image`) VALUES
-(13, 'Chicken', 123, 'Spicy Chicken', 0x696d616765732e6a7067);
+(13, 'Chicken', 123, 'Spicy Chicken', 0x696d616765732e6a7067),
+(17, 'Pork Liempo', 120, 'Masarap', 0x696d61676573202831292e6a7067);
 
 -- --------------------------------------------------------
 
@@ -128,6 +145,14 @@ INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_email`, `staff_password`, 
 --
 
 --
+-- Indexes for table `cart`
+--
+ALTER TABLE `cart`
+  ADD PRIMARY KEY (`cart_id`),
+  ADD KEY `food_id` (`food_id`),
+  ADD KEY `order_id` (`order_id`);
+
+--
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
@@ -170,6 +195,12 @@ ALTER TABLE `staff`
 --
 
 --
+-- AUTO_INCREMENT for table `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `cart_id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
@@ -179,7 +210,7 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT for table `food_products`
 --
 ALTER TABLE `food_products`
-  MODIFY `food_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `food_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `order_details`
@@ -208,6 +239,13 @@ ALTER TABLE `staff`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `cart`
+--
+ALTER TABLE `cart`
+  ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`food_id`) REFERENCES `food_products` (`food_id`),
+  ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`order_id`) REFERENCES `order_details` (`order_id`);
 
 --
 -- Constraints for table `order_details`
