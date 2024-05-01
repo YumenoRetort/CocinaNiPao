@@ -9,6 +9,9 @@
     <script src="../js/script.js"></script>
 </head>
 <body>
+
+    <?php include 'admin_header.php'; ?>
+
     <h2>Add Products</h2>
     <form method="post" enctype="multipart/form-data" action="">
         Name: <input type="text" name="food_name" class="input_fields" required><br>
