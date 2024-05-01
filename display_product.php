@@ -24,6 +24,7 @@
             echo "<p>Price: " . $row['food_price'] . "</p>";
             echo "<p>Description: " . $row['food_description'] . "</p>";
             echo "<img src='images/images.jpg' alt='Product Image' style='width: 200px; height: 200px;'>";
+            echo "<input type='submit'value='add to cart'>";
             echo "</div>";
         }
     } else {
