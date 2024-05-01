@@ -10,7 +10,7 @@
 <body>
 
 <header>
-    <h1>Welcome to My Website</h1>
+    <h1>Cocina ni Pao</h1>
     <nav>
         <a href="homepage.php">Home</a> |
         <a href="about.php">About</a> |
