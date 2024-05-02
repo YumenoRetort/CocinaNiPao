@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2024 at 01:58 PM
+-- Generation Time: May 02, 2024 at 12:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,13 +29,23 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `cart` (
   `cart_id` int(10) NOT NULL,
-  `order_id` int(10) NOT NULL,
+  `order_id` int(10) DEFAULT NULL,
   `food_id` int(10) NOT NULL,
   `name` varchar(255) NOT NULL,
   `qty` int(10) DEFAULT NULL,
   `price` int(10) DEFAULT NULL,
-  `img` varchar(100) NOT NULL
+  `img` blob NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`cart_id`, `order_id`, `food_id`, `name`, `qty`, `price`, `img`) VALUES
+(54, 24, 13, 'Chicken', 1, 123, 0x696d616765732e6a7067),
+(55, 25, 13, 'Chicken', 1, 123, 0x696d616765732e6a7067),
+(56, 25, 13, 'Chicken', 1, 123, 0x696d616765732e6a7067),
+(57, 25, 13, 'Chicken', 1, 123, 0x696d616765732e6a7067);
 
 -- --------------------------------------------------------
 
@@ -57,7 +67,8 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customer_id`, `customer_name`, `email`, `password`, `mobile`, `address`) VALUES
-(1, 'Erin Reyes', 'ebmgreyes@mymail.mapua.edu.ph', 'Aliceiw@143', '0918989273', 'BLK 7A LOT 2 JOB STREET JUANA');
+(1, 'Erin Reyes', 'ebmgreyes@mymail.mapua.edu.ph', 'Aliceiw@143', '0918989273', 'BLK 7A LOT 2 JOB STREET JUANA'),
+(2, 'Tester 2', 'erin_bmreyes@yahoo.com', 'Aliceiw@143', '0918989273', 'BLK 7A LOT 2 JOB STREET JUANA');
 
 -- --------------------------------------------------------
 
@@ -79,7 +90,8 @@ CREATE TABLE `food_products` (
 
 INSERT INTO `food_products` (`food_id`, `food_name`, `food_price`, `food_description`, `food_image`) VALUES
 (13, 'Chicken', 123, 'Spicy Chicken', 0x696d616765732e6a7067),
-(17, 'Pork Liempo', 120, 'Masarap', 0x696d61676573202831292e6a7067);
+(17, 'Pork Liempo', 120, 'Masarap', 0x696d61676573202831292e6a7067),
+(18, 'Biryani', 200, 'Food', 0x696d616765732832292e6a7067);
 
 -- --------------------------------------------------------
 
@@ -90,10 +102,18 @@ INSERT INTO `food_products` (`food_id`, `food_name`, `food_price`, `food_descrip
 CREATE TABLE `order_details` (
   `order_id` int(10) NOT NULL,
   `customer_id` int(10) NOT NULL,
-  `staff_id` int(10) NOT NULL,
-  `order_status` varchar(255) NOT NULL,
-  `order_recieved` varchar(255) NOT NULL
+  `staff_id` int(10) DEFAULT NULL,
+  `order_status` varchar(255) DEFAULT NULL,
+  `order_received` datetime(6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `order_details`
+--
+
+INSERT INTO `order_details` (`order_id`, `customer_id`, `staff_id`, `order_status`, `order_received`) VALUES
+(24, 1, NULL, NULL, '2024-05-02 10:55:07.000000'),
+(25, 1, NULL, NULL, '2024-05-02 12:01:31.000000');
 
 -- --------------------------------------------------------
 
@@ -198,25 +218,25 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `cart_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `customer_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `food_products`
 --
 ALTER TABLE `food_products`
-  MODIFY `food_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `food_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `payment`
