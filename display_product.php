@@ -13,29 +13,36 @@ if(isset($_POST['add_to_cart'])) {
         $food_id = $_POST['food_id'];
         $food_quantity = 1;
 
-        $insert_products = mysqli_query($con,"INSERT INTO `cart` (food_id, order_id, name, qty, price, img) VALUES ('$food_id', '$order_id', '$food_name','$food_quantity', '$food_price','$food_image')");
-        if($insert_products){
-            // Get cart count after successful addition
-            $query = "SELECT COUNT(*) AS count FROM cart WHERE order_id='$order_id'";
-            $result = mysqli_query($con, $query);
-            $cartCount = 0;
-            if ($row = mysqli_fetch_assoc($result)) {
-                $cartCount = $row['count'];
+        $query = "SELECT * FROM cart WHERE order_id = '$order_id' AND food_id = '$food_id'";
+        $result = mysqli_query($con, $query);
+
+        if (mysqli_num_rows($result) == 0){
+            $insert_products = mysqli_query($con,"INSERT INTO `cart` (food_id, order_id, name, qty, price, img) VALUES ('$food_id', '$order_id', '$food_name','$food_quantity', '$food_price','$food_image')");
+            if($insert_products){
+                // Get cart count after successful addition
+                $query = "SELECT COUNT(*) AS count FROM cart WHERE order_id='$order_id'";
+                $result = mysqli_query($con, $query);
+                $cartCount = 0;
+                if ($row = mysqli_fetch_assoc($result)) {
+                    $cartCount = $row['count'];
+                }
+                $_SESSION['cartCount'] = $cartCount; // Store cart count in session
+                header("Location: ".$_SERVER['REQUEST_URI']); // Redirect to the same page
+                exit();
+            } else {
+                echo "Error: " . mysqli_error($con);
             }
-            $_SESSION['cartCount'] = $cartCount; // Store cart count in session
-            header("Location: ".$_SERVER['REQUEST_URI']); // Redirect to the same page
-            exit();
-        } else {
-            echo "Error: " . mysqli_error($con);
+        } else{
+            echo 'Item already in cart';
         }
+
+        
         
     } else {
         // If user is not logged in, prompt them to log in
         echo 'User must be logged in';
     }
 }
-
-
 ?>
 
 <!DOCTYPE html>
