@@ -39,7 +39,7 @@
                             VALUES ('$customer_name', '$email', '$password', '$mobile', '$address')";
             
             if(mysqli_query($con, $insert_query)) {
-                echo "Customer inserted successfully!";
+                echo "Thank you for registering chuchu!";
             } else {
                 echo "Error: " . mysqli_error($con);
             }

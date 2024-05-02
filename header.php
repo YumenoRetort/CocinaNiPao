@@ -20,6 +20,10 @@ if (isset($_SESSION["uid"])) {
     $query = mysqli_query($con, $sql);
     $row = mysqli_fetch_array($query);
 
+    // Check if $_SESSION['cartCount'] is set
+    $cartCount = isset($_SESSION['cartCount']) ? $_SESSION['cartCount'] : 0;
+
+
     echo '
             <header>
                 <h1>Cocina ni Pao</h1>
@@ -32,8 +36,8 @@ if (isset($_SESSION["uid"])) {
                     <a href="logout.php">Logout</a> |
                 </nav>
                 <!-- Shopping Cart Icon -->
-                <a href="" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i><sup>4</sup></a>
-            </header>';
+                <a href="cart.php" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i><sup>'. $cartCount .'</sup></a>
+                </header>';
 
 } else {
     echo '
@@ -46,9 +50,8 @@ if (isset($_SESSION["uid"])) {
                     <a href="help_support.php">Contact</a> |
                     <a href="login.php">Login</a>
                 </nav>
-
                 <!-- Shopping Cart Icon -->
-                <a href="" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i><sup>4</sup></a>
+                <a href="cart.php" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i><sup></sup></a>
             </header>
             ';
 }
