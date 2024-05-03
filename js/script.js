@@ -54,3 +54,4 @@ function updateQuantity(foodId, newQuantity) {
     };
     xhr.send("food_id=" + foodId + "&quantity=" + newQuantity);
 }
+
