@@ -33,6 +33,10 @@ if (mysqli_num_rows($result) > 0) {
             exit; // Stop further execution
         }
     }
+
+    unset($_SESSION["order"]);
+    unset($_SESSION['cartCount']);
+
 } else {
     echo "No products found.";
 }

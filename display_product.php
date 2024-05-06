@@ -12,6 +12,7 @@ if(isset($_POST['add_to_cart'])) {
         $food_image = $_POST['food_image'];
         $food_id = $_POST['food_id'];
         $food_quantity = 1;
+        $order_id = $_SESSION["order"];
 
         $query = "SELECT * FROM cart WHERE order_id = '$order_id' AND food_id = '$food_id'";
         $result = mysqli_query($con, $query);
