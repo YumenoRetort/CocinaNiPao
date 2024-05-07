@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2024 at 12:04 PM
+-- Generation Time: May 07, 2024 at 03:20 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -42,10 +42,30 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`cart_id`, `order_id`, `food_id`, `name`, `qty`, `price`, `img`) VALUES
-(54, 24, 13, 'Chicken', 1, 123, 0x696d616765732e6a7067),
-(55, 25, 13, 'Chicken', 1, 123, 0x696d616765732e6a7067),
-(56, 25, 13, 'Chicken', 1, 123, 0x696d616765732e6a7067),
-(57, 25, 13, 'Chicken', 1, 123, 0x696d616765732e6a7067);
+(54, 24, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(55, 25, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(56, 25, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(57, 25, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(58, 26, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(59, 26, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(60, 27, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(61, 27, 17, 'Pork Liempo', 2, 120, 0x696d61676573202831292e6a7067),
+(62, 27, 18, 'Biryani', 1, 200, 0x696d616765732832292e6a7067),
+(63, 28, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(64, 29, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(65, 29, 17, 'Pork Liempo', 2, 120, 0x696d61676573202831292e6a7067),
+(66, 30, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(67, 31, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(71, 33, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(72, 34, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(73, 35, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(74, 36, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(75, 37, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(76, 38, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(77, 39, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(78, 40, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(82, 41, 13, 'Chicken', 3, 123, 0x696d616765732e6a7067),
+(83, 41, 17, 'Pork Liempo', 2, 120, 0x696d61676573202831292e6a7067);
 
 -- --------------------------------------------------------
 
@@ -113,7 +133,23 @@ CREATE TABLE `order_details` (
 
 INSERT INTO `order_details` (`order_id`, `customer_id`, `staff_id`, `order_status`, `order_received`) VALUES
 (24, 1, NULL, NULL, '2024-05-02 10:55:07.000000'),
-(25, 1, NULL, NULL, '2024-05-02 12:01:31.000000');
+(25, 1, NULL, NULL, '2024-05-02 12:01:31.000000'),
+(26, 1, NULL, NULL, '2024-05-02 14:09:07.000000'),
+(27, 1, NULL, NULL, '2024-05-02 15:23:38.000000'),
+(28, 1, NULL, NULL, '2024-05-02 16:24:00.000000'),
+(29, 2, NULL, NULL, '2024-05-02 17:48:08.000000'),
+(30, 2, NULL, NULL, '2024-05-02 18:52:57.000000'),
+(31, 2, NULL, NULL, '2024-05-03 01:58:43.000000'),
+(32, 2, NULL, NULL, '2024-05-06 09:24:23.000000'),
+(33, 2, NULL, NULL, '2024-05-06 13:26:19.000000'),
+(34, 1, NULL, NULL, '2024-05-06 13:41:07.000000'),
+(35, 1, NULL, NULL, '2024-05-06 13:43:21.000000'),
+(36, 1, NULL, NULL, '2024-05-06 13:44:20.000000'),
+(37, 1, NULL, NULL, '2024-05-06 13:53:30.000000'),
+(38, 1, NULL, NULL, '2024-05-06 13:54:38.000000'),
+(39, 1, NULL, NULL, '2024-05-06 13:56:39.000000'),
+(40, 1, NULL, NULL, '2024-05-06 14:29:53.000000'),
+(41, 1, NULL, NULL, '2024-05-07 14:49:20.000000');
 
 -- --------------------------------------------------------
 
@@ -126,6 +162,16 @@ CREATE TABLE `payment` (
   `order_id` int(10) NOT NULL,
   `total_amount` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`payment_id`, `order_id`, `total_amount`) VALUES
+(1, 29, 123),
+(2, 39, 123),
+(3, 40, 123),
+(4, 41, 609);
 
 -- --------------------------------------------------------
 
@@ -218,7 +264,7 @@ ALTER TABLE `staff`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `cart_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
 
 --
 -- AUTO_INCREMENT for table `customer`
@@ -236,13 +282,13 @@ ALTER TABLE `food_products`
 -- AUTO_INCREMENT for table `order_details`
 --
 ALTER TABLE `order_details`
-  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `order_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payment_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `payment_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `shipments`
