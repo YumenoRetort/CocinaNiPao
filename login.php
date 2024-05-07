@@ -146,7 +146,7 @@
                         <br><br>
                         <center><div class="line"><span>Or</span></div></center>
                         <br>
-                        <button type="button" class="btn signup-btn" href="login.php">Sign Up</button>
+                        <a href="register.php" class="btn signup-btn">Sign Up</a>
                     </form>
                 </div>
             </div>
