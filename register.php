@@ -184,14 +184,11 @@
                                 VALUES ('$customer_name', '$email', '$password', '$mobile', '$address')";
                 
                 if(mysqli_query($con, $insert_query)) {
-                    echo "<script>alert('Registration successful!');</script>";
-                    $env = parse_ini_file('.env');
-                    $URL = $env["LOGIN_URL"];
-                    echo "<script type='text/javascript'> window.location.href = '$URL';</script>";
-                    
+                    echo "<script>alert('Registration successful!'); window.location='login.php';</script>";
                 } else {
                     echo "Error: " . mysqli_error($con);
                 }
+                
             }
         }
     }

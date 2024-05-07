@@ -127,6 +127,45 @@
 </head>
 <body>
 
+    <?php 
+
+    include 'Admin/connect.php';
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        $query = "SELECT * FROM customer WHERE email='$email' AND password='$password'";
+        $result = mysqli_query($con, $query);
+
+        if (mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_array($result);
+            $_SESSION["uid"] = $row["customer_id"];
+            $_SESSION["name"] = $row["customer_name"];
+            
+            // Redirect user
+            header("Location: index.php");
+            exit();
+        }
+        else{
+            $query = "SELECT * FROM staff WHERE staff_email='$email' AND staff_password='$password'";
+            $result = mysqli_query($con, $query);
+
+            if (mysqli_num_rows($result) == 1) {
+                $row = mysqli_fetch_array($result);
+                $_SESSION["uid"] = $row["staff_id"];
+                $_SESSION["name"] = $row["staff_name"];
+                
+                // Redirect user
+                header("Location: Admin/admin_homepage.php");
+                exit();
+            } else {
+                echo "<script>alert('Invalid email or password. Please try again.');</script>";
+            }
+        }
+    }
+    ?>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 left-side">
@@ -157,48 +196,7 @@
         </div>
     </div>
 
-    <?php 
-
-    include 'Admin/connect.php';
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $email = $_POST['email'];
-        $password = $_POST['password'];
-
-        $query = "SELECT * FROM customer WHERE email='$email' AND password='$password'";
-        $result = mysqli_query($con, $query);
-
-        if (mysqli_num_rows($result) == 1) {
-            $row = mysqli_fetch_array($result);
-            $_SESSION["uid"] = $row["customer_id"];
-            $_SESSION["name"] = $row["customer_name"];
-            
-            // Redirect user
-            $env = parse_ini_file('.env');
-            $URL = $env["LOGIN_URL"];
-            echo "<script type='text/javascript'> window.location.href = '$URL';</script>";
-            exit();
-        }
-        else{
-            $query = "SELECT * FROM staff WHERE staff_email='$email' AND staff_password='$password'";
-            $result = mysqli_query($con, $query);
-
-            if (mysqli_num_rows($result) == 1) {
-                $row = mysqli_fetch_array($result);
-                $_SESSION["uid"] = $row["staff_id"];
-                $_SESSION["name"] = $row["staff_name"];
-                
-                // Redirect user
-                $env = parse_ini_file('.env');
-                $URL = $env["ADMIN_LOGIN_URL"];
-                echo "<script type='text/javascript'> window.location.href = '$URL';</script>";
-                exit();
-            } else {
-                echo "Invalid email or password. Please try again.";
-            }
-        }
-    }
-    ?>
+    
 
     <!-- Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
