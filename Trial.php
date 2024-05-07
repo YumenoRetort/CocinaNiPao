@@ -7,10 +7,10 @@ include('Admin/connect.php');
 // Initialize total price variable
 $total_price = 0;
 
-if(isset($_SESSION['order'])) {
-    // Fetch items in the cart for the current user
-    $customer_id = $_SESSION["uid"];
-    $order_id = $_SESSION["order"];
+// if(isset($_SESSION['order'])) {
+//     // Fetch items in the cart for the current user
+//     $customer_id = $_SESSION["uid"];
+//     $order_id = $_SESSION["order"];
 
     $query = "SELECT cart.*, order_details.order_id 
             FROM cart 
