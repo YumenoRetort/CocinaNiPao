@@ -32,12 +32,12 @@
 
         $query = "SELECT * FROM customer WHERE email='$email' AND password='$password'";
         $result = mysqli_query($con, $query);
-
-        if (mysqli_num_rows($result) == 1) {
-            $row = mysqli_fetch_array($result);
+        $row = mysqli_fetch_array($result);
             $_SESSION["uid"] = $row["customer_id"];
             $_SESSIOn["name"] = $row["customer_name"];
 
+
+        if (mysqli_num_rows($result) == 1) {
             //user redirect
             header("Location: index.php");
             exit();
@@ -47,12 +47,11 @@
 
             $query = "SELECT * FROM staff WHERE staff_email='$email' AND staff_password='$password'";
             $result = mysqli_query($con, $query);
-
-            if (mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_array($result);
                 $_SESSION["uid"] = $row["staff_id"];
                 $_SESSIOn["name"] = $row["staff_name"];
-                
+
+            if (mysqli_num_rows($result) == 1) {
                 //user redirect
                 header("Location: Admin/admin_homepage.php");
                 exit();
