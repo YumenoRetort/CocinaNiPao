@@ -1,58 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>HomePage</title>
+<?php 
+include('header.php');
 
-	<link rel = "stylesheet" href="css/style.css">
-</head>
-<body>
-	
-    <?php 
-    include('header.php');
-	?>
+// Initialize total price variable
+$total_price = 0;
 
-    <?php 
+// Check if the $_SESSION['uid'] variable is set
+if(isset($_SESSION['uid'])) {
+    // Check if the "order" session variable is set
+    if(isset($_SESSION['order'])) {
+        // Establish database connection
+        include('Admin/connect.php');
 
-    $one_hour_ago = date('Y-m-d H:i:s', strtotime('-1 hour'));
-    $customer_id = $_SESSION["uid"];
+        // Fetch items in the cart for the current user
+        $customer_id = $_SESSION["uid"];
+        $order_id = $_SESSION["order"];
 
-    // Query to select food items ordered within the last hour
-    $query = "SELECT cart.*, order_details.order_received 
-            FROM cart 
-            INNER JOIN order_details ON cart.order_id = order_details.order_id 
-            WHERE order_details.customer_id = $customer_id AND order_details.order_received >= '$one_hour_ago'";
-    $result = mysqli_query($con, $query);
-
-    if (mysqli_num_rows($result) > 0) {
-        while ($row = mysqli_fetch_assoc($result)) {
-
-    ?>
-
-    <form method="post">
-        <div>
-            <img src="images/<?php echo $row['img']?>" alt="">
-            <h3><?php echo $row['name']?></h3>
-            <div>Price:<?php echo $row['price']?></div>
-            <div>Quantity:<?php echo $row['qty']?></div>
-            <input type="hidden" name="food_name" value="<?php echo $row['name']?>">
-            <input type="hidden" name="food_price" value="<?php echo $row['price']?>">
-            <input type="hidden" name="food_image" value="<?php echo $row['img']?>">
-            <input type="hidden" name="food_id" value="<?php echo $row['food_id']?>">
-        </div>
-    </form>
-
-    <?php 
-        }} else {
-            echo "No products found.";
+        $query = "SELECT cart.*, order_details.order_received 
+                FROM cart 
+                INNER JOIN order_details ON cart.order_id = order_details.order_id 
+                WHERE order_details.customer_id = $customer_id AND order_details.order_id = $order_id";
+        $result = mysqli_query($con, $query);
+        
+        if (!$result || mysqli_num_rows($result) <= 0){
+            echo "Your cart is empty.";
+        } else {
+            // If there are items in the cart, display them
+            while ($row = mysqli_fetch_assoc($result)) {
+                // Calculate total price for each item
+                $total_item_price = $row['price'] * $row['qty'];
+                // Add total price for the item to overall total price
+                $total_price += $total_item_price;
+        ?>
+                <div>
+                    <img src="images/<?php echo $row['img']?>" alt="">
+                    <h3><?php echo $row['name']?></h3>
+                    <div>Price: <?php echo $row['price']?></div>
+                    <label for="quantity_<?php echo $row['food_id']?>">Quantity:</label>
+                    <input type="number" name="quantity" id="quantity_<?php echo $row['food_id']?>" value="<?php echo $row['qty']?>" min="1" max="10" onchange="updateQuantity(<?php echo $row['food_id']?>, this.value)">
+                    <!-- Display total price for the item -->
+                    <div id="total_price_<?php echo $row['food_id']?>">Total Price: <?php echo $total_item_price ?></div>
+                    <!-- Remove button for each item -->
+                    <form method="post" action="remove_item.php">
+                        <input type="hidden" name="food_id" value="<?php echo $row['food_id']?>">
+                        <button type="submit" name="remove_item">Remove</button>
+                    </form>
+                </div>
+        <?php 
+            }
+            // Display overall total price
+            echo '<div id="overall_total_price">Total Price: ' . $total_price . '</div>';
+            echo '<form method="post" action="checkout.php">';
+            echo '<input type="hidden" name="overallprice" value="' . $total_price . '">';
+            echo '<button type="submit" name="checkout">Checkout</button>';
+            echo '</form>';
         }
 
-    mysqli_close($con);
-    ?>
-
-	<script src="js/script.js"></script>
-	
-</body>
-</html>
-
+        mysqli_close($con);
+    } else {
+        // No order_Id
+        echo "Your cart is empty.";
+    }
+} else {
+    // Prompt to log in
+    echo "Please log in to view your cart.";
+}
+?>

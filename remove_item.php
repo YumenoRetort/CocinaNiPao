@@ -1,6 +1,6 @@
 <?php
-session_start();
 
+session_start();
 // Check if the food ID is provided
 if(isset($_POST['food_id'])) {
     // Establish database connection
@@ -17,6 +17,7 @@ if(isset($_POST['food_id'])) {
     if($result) {
         // Redirect back to the cart page after item removal
         unset($_SESSION['cartCount']);
+
         header("Location: cart.php");
         exit();
     } else {

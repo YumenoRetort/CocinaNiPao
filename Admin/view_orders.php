@@ -27,12 +27,12 @@ if (mysqli_num_rows($result) > 0) {
             if ($current_order_id !== null) {
                 // Add dropdown inputs for staff members and order statuses at the end of each order
                 echo '<tr>';
-                echo '<td colspan="3"></td>'; // Adjust colspan to match the number of columns before buttons
-                echo '<td>Staff</td>'; // Header for staff
-                echo '<td>Status</td>'; // Header for status
+                echo '<td colspan="3"></td>'; 
+                echo '<td>Staff</td>'; 
+                echo '<td>Status</td>'; 
                 echo '</tr>';
                 echo '<tr>';
-                echo '<td colspan="3"></td>'; // Adjust colspan to match the number of columns before buttons
+                echo '<td colspan="3"></td>'; 
                 echo '<td>';
                 echo '<select name="staff_id[]">';
                 echo '<option value="">Select Staff</option>';
@@ -57,19 +57,19 @@ if (mysqli_num_rows($result) > 0) {
                 echo '</select>';
                 echo '</td>';
                 echo '</tr>';
-                echo '</tbody>'; // Close tbody for the current order
+                echo '</tbody>';
                 // Add submit button for the current order
                 echo '<tr><td colspan="5"><button type="submit" name="update_order">Update Order</button></td></tr>';
-                echo '</table>'; // Close the table for the current order
-                echo '<input type="hidden" name="order_id[]" value="' . $current_order_id . '">'; // Hidden input field for order_id
-                echo '</form>'; // Close form for the current order
+                echo '</table>';
+                echo '<input type="hidden" name="order_id[]" value="' . $current_order_id . '">'; 
+                echo '</form>';
             }
             echo "<h2>Order " . $row['order_id'] . ":</h2>";
             // Start form for the current order
             echo '<form method="POST" action="update_orders.php">';
             echo "<table>"; // Start a new table for the current order
             echo "<thead><tr><th>Name</th><th>Price</th><th>Quantity</th></tr></thead>";
-            echo "<tbody>"; // Start tbody for the current order
+            echo "<tbody>";
             $current_order_id = $row['order_id'];
             $current_order_status = $row['order_status']; // Set current order status
             $current_order_staff = $row['staff_id']; // Set current order staff
