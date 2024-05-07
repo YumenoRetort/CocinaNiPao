@@ -172,17 +172,23 @@
         $mobile = $_POST['mobile'];
         $address = $_POST['address'];
 
-        // Check if password and confirm password match
-        if ($password !== $confirm_password) {
-            echo "Error: Passwords do not match.";
+        // Check if any field is empty
+        if (empty($customer_name) || empty($email) || empty($password) || empty($confirm_password) || empty($mobile) || empty($address)) {
+            echo "<script>alert('Please fill in all fields.');</script>";
         } else {
-            $insert_query = "INSERT INTO customer (customer_name, email, password, mobile, address) 
-                            VALUES ('$customer_name', '$email', '$password', '$mobile', '$address')";
-            
-            if(mysqli_query($con, $insert_query)) {
-                echo "Thank you for registering chuchu!";
+            // Check if password and confirm password match
+            if ($password !== $confirm_password) {
+                echo "<script>alert('Error: Passwords do not match.');</script>";
             } else {
-                echo "Error: " . mysqli_error($con);
+                $insert_query = "INSERT INTO customer (customer_name, email, password, mobile, address) 
+                                VALUES ('$customer_name', '$email', '$password', '$mobile', '$address')";
+                
+                if(mysqli_query($con, $insert_query)) {
+                    echo "<script>alert('Registration successful!'); window.location='login.php';</script>";
+                } else {
+                    echo "Error: " . mysqli_error($con);
+                }
+                
             }
         }
     }
@@ -192,5 +198,27 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Client-side form validation
+        document.querySelector('form').addEventListener('submit', function(event) {
+            const inputs = this.querySelectorAll('input[type="text"], input[type="password"]');
+            let isValid = true;
+
+            inputs.forEach(function(input) {
+                if (!input.value.trim()) {
+                    isValid = false;
+                    input.classList.add('is-invalid');
+                } else {
+                    input.classList.remove('is-invalid');
+                }
+            });
+
+            if (!isValid) {
+                event.preventDefault();
+                return false;
+            }
+        });
+    </script>
 </body>
 </html>
