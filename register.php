@@ -154,7 +154,7 @@
                         <br><br>
                         <center><div class="line"><span>Or</span></div></center>
                         <br>
-                        <button type="button" class="btn login-btn" href="login.php">Login</button>
+                        <a type="button" class="btn login-btn" href="login.php">Login</a>
                     </form>
                 </div>
             </div>
