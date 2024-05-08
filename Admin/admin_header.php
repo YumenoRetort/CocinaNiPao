@@ -20,12 +20,13 @@ session_start();
         <a href="add_staff.php">Add Staff</a> |
         <a href="view_orders.php">View Current Orders</a> |
         <a href="comp_orders.php">View Completed Orders</a> |
+				<a href="admin_message.php">Messages</a> |
         <a href="../logout.php">Logout</a>
     </nav>
 
 </header>
-    
+
 	<script src="js/script.js"></script>
-	
+
 </body>
 </html>

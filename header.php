@@ -39,6 +39,7 @@ if (isset($_SESSION["uid"])) {
                 <a href="cart.php" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i><sup>'. $cartCount .'</sup></a>
                 </header>';
 
+include('customer_message.php');
 } else {
     echo '
             <header>
