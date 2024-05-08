@@ -60,21 +60,39 @@
   $result = mysqli_query($con, $get_old_message);
 
   while ($row = mysqli_fetch_array($result)) {
-    echo "<script>
-    var component = document.createElement('div');
+    if ($row['from_who'] == "Customer"){
+      echo "<script>
+      var component = document.createElement('div');
 
-    // Set the content of the component using the provided data
-    component.innerHTML = `
-        <h4>From: {$row['from_who']}</h4>
-        <p>{$row['message_content']}<br>
-        --------------------------------</p>
-    `;
-    // Append the new component to the container
-    document.getElementById('previous_messages').appendChild(component);
+      // Set the content of the component using the provided data
+      component.innerHTML = `
+          <h4>From: You</h4>
+          <p>{$row['message_content']}<br>
+          --------------------------------</p>
+      `;
+      // Append the new component to the container
+      document.getElementById('previous_messages').appendChild(component);
 
 
 
-    </script>";
+      </script>";
+    } else{
+      echo "<script>
+      var component = document.createElement('div');
+
+      // Set the content of the component using the provided data
+      component.innerHTML = `
+          <h4>From: {$row['from_who']}</h4>
+          <p>{$row['message_content']}<br>
+          --------------------------------</p>
+      `;
+      // Append the new component to the container
+      document.getElementById('previous_messages').appendChild(component);
+
+
+
+      </script>";
+    }
   }
   ?>
   <script>
