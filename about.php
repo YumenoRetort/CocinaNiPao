@@ -12,11 +12,11 @@
     <style>
 
       .about-us {
-        font-size: 96px;
+        font-size: 85px;
         text-align: center;
         margin-left: 500px;
-        margin-top: 20px;
-		width:500px;
+        margin-top: 1px;
+		width:480px;
       }
 
       .about {
