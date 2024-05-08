@@ -34,14 +34,14 @@ if(isset($_POST['add_to_cart'])) {
                 echo "Error: " . mysqli_error($con);
             }
         } else{
-            echo 'Item already in cart';
+            echo '<div class="alert alert-danger" role="alert">Item already in cart</div>';
         }
 
         
         
     } else {
         // If user is not logged in, prompt them to log in
-        echo 'User must be logged in';
+        echo '<div class="alert alert-danger" role="alert">User must be logged in</div>';
     }
 }
 ?>
@@ -124,6 +124,17 @@ if(isset($_POST['add_to_cart'])) {
         .card-price {
             margin: 5px;
         }
+
+        .alert {
+            font-size:18px;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 1rem 12rem;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+        }
     </style>
 </head>
 <body>
@@ -161,7 +172,7 @@ if(isset($_POST['add_to_cart'])) {
     
             <?php 
                 }} else {
-                    echo "No products found.";
+                    echo '<div class="alert alert-danger" role="alert">No products found.</div>';
                 }
 
             mysqli_close($con);
