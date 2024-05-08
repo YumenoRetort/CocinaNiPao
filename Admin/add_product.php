@@ -33,8 +33,7 @@
             border-radius: 35px; 
             transition: all 0.3s; 
             padding: 10px;
-            box-sizing: border-box;
-            margin-top: 10px;
+            box-sizing: border-box; 
         }
         .input_fields[type="text"]:focus {
             transform: scale(1.05); 
@@ -65,7 +64,7 @@
         .table-custom th {
             padding: 10px;
             background-color: #fab438;
-            color: white; /* Set text color for header */
+            color: white;
             background-color: #474747;
             border: none;
         }
@@ -118,9 +117,9 @@
                 <div class="add-products-container">
                     <h2>Add Products</h2>
                     <form method="post" enctype="multipart/form-data" action="">
-                        Name: <input type="text" name="food_name" class="input_fields form-control" required><br>
-                        Price: <input type="text" name="food_price" class="input_fields form-control" required><br>
-                        Description: <input type="text" name="food_description" class="input_fields form-control" required><br>
+                        <input type="text" name="food_name" class="input_fields form-control" required placeholder="Name"><br>
+                        <input type="text" name="food_price" class="input_fields form-control" required placeholder="Price"><br>
+                        <input type="text" name="food_description" class="input_fields form-control" required placeholder="Description"><br>
                         Image: <input type="file" name="food_image" class="input_fields form-control" required accept="image/png, image/jpg, image/jpeg"><br>
                         <input type="submit" value="Submit" class="btn btn-primary btn-submit">
                     </form>
