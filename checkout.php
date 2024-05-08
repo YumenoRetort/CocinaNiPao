@@ -60,16 +60,72 @@ mysqli_close($con);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     <script src="js/script.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #474747;
+            font-family: "Poppins", sans-serif;
+        }
+        #payment-header {
+            color: #474747;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .container {
+            margin-top: 100px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 35px;
+            max-width: 550px;
+            font-size: 35px;
+        }
+        #overall_total_price {
+            color: #474747;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        button[type="submit"] {
+            width: 100%;
+            margin: 0 auto;
+            display: block;
+            transition: all 0.3s ease-in-out;
+            border-radius: 35px;
+            background-color: #FFD17F;
+            border: none;
+            color: #474747;
+            padding-top: 15px;
+            padding-bottom: 15px;
+        }
+        button[type="submit"]:hover {
+            transform: scale(1.05);
+            font-weight: bold;
+            background-color: #FFD17F;
+            color: #474747;
+        }
+        h2 {
+            font-size: 50px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <h2 id="payment-header">Payment</h2>
     <!-- Display overall total price -->
-    <div id="overall_total_price">Total Price: <?php echo $total_price ?></div>
+    <div id="overall_total_price">Total Price: ₱<b><?php echo $total_price ?></b></div>
 
     <!-- Confirm Payment button -->
     <form method="post" action="">
-        <button type="submit" name="confirm_payment">Confirm Payment</button>
+        <button type="submit" name="confirm_payment" class="btn btn-primary">Confirm Payment</button>
     </form>
+</div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 </body>
 </html>
