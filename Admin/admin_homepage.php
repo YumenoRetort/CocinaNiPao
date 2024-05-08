@@ -9,10 +9,12 @@
 </head>
 <body>
 
-    <?php include 'admin_header.php'; ?>
+    <?php include 'admin_header.php';
+		$_SESSION['customer_message_id'] = null;
+		?>
 
-    
+
 	<script src="js/script.js"></script>
-	
+
 </body>
 </html>
