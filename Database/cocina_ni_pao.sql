@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 07, 2024 at 03:20 PM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Host: localhost
+-- Generation Time: May 08, 2024 at 07:22 AM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -116,6 +116,27 @@ INSERT INTO `food_products` (`food_id`, `food_name`, `food_price`, `food_descrip
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `messages`
+--
+
+CREATE TABLE `messages` (
+  `customer_id` int(11) NOT NULL,
+  `staff_id` int(11) NOT NULL,
+  `message_content` text NOT NULL,
+  `message_id` int(11) NOT NULL,
+  `from_who` enum('Staff','Customer') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`customer_id`, `staff_id`, `message_content`, `message_id`, `from_who`) VALUES
+(1, 1, 'Trial message', 1, 'Customer');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `order_details`
 --
 
@@ -204,7 +225,7 @@ CREATE TABLE `staff` (
 --
 
 INSERT INTO `staff` (`staff_id`, `staff_name`, `staff_email`, `staff_password`, `staff_mobile`) VALUES
-(3, 'Erin', 'erinreyes1431@gmail.com', 'Aliceiw@143', '0918989273');
+(1, 'Erin', 'erinreyes1431@gmail.com', 'Aliceiw@143', '0918989273');
 
 --
 -- Indexes for dumped tables
@@ -229,6 +250,12 @@ ALTER TABLE `customer`
 --
 ALTER TABLE `food_products`
   ADD PRIMARY KEY (`food_id`);
+
+--
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
+  ADD PRIMARY KEY (`message_id`);
 
 --
 -- Indexes for table `order_details`
@@ -277,6 +304,12 @@ ALTER TABLE `customer`
 --
 ALTER TABLE `food_products`
   MODIFY `food_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `message_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order_details`
