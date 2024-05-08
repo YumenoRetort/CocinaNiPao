@@ -9,7 +9,59 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header</title>
 
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+        header {
+            font-family: "DM Sans", sans-serif;
+        }
+
+        .navbar {
+            background-color: #efeae3;;
+            height: 150px;
+        }
+
+        .navbar-nav {
+            margin-left: 4rem;
+        }
+
+        .nav-item {
+            color: black;
+            font-weight: medium;
+            font-size: 18px;
+            transition: color 0.2s ease-in-out;
+        }
+
+        .nav-item:hover, .cart:hover {
+            color: #5a5a5a; 
+        }
+
+        .navbar-nav.ms-auto {
+            gap: 3rem;
+        }
+
+        .nav-item {
+            font-weight: medium;
+            font-size: 18px;
+        }
+
+        .cart {
+            background-color: #999B85;
+            color: #efeae3;
+            padding: 10px 20px;
+            border-radius: 53px;
+        }
+
+        #navbarNav.collapse.navbar-collapse {
+            text-align: right;
+        }
+    </style>
 </head>
 <body>
 
@@ -23,38 +75,82 @@ if (isset($_SESSION["uid"])) {
     // Check if $_SESSION['cartCount'] is set
     $cartCount = isset($_SESSION['cartCount']) ? $_SESSION['cartCount'] : 0;
 
-
     echo '
             <header>
-                <h1>Cocina ni Pao</h1>
-                <nav>
-                    <a href="homepage.php">Home</a> |
-                    <a href="about.php">About</a> |
-                    <a href="order.php">Order</a> |
-                    <a href="help_support.php">Contact</a> |
-                    <a>'. $row["customer_name"] . '</a> |
-                    <a href="logout.php">Logout</a> |
-                </nav>
-                <!-- Shopping Cart Icon -->
-                <a href="cart.php" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i><sup>'. $cartCount .'</sup></a>
-                </header>';
+                <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container" id="nav-container">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <h1>Cocina ni Pao</h1>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li>
+                                <a href="homepage.php" class="nav-item">Home</a> |
+                            </li>
+                            <li>
+                                <a href="about.php" class="nav-item">About</a> |
+                            </li>
+                            <li>
+                                <a href="order.php" class="nav-item">Order</a> |
+                            </li>
+                            <li>
+                                <a href="help_support.php" class="nav-item">Contact</a> |
+                            </li>
+                            <li>
+                                <a style="font-size: 18px">'. $row["customer_name"] . '</a> |
+                            </li>
+                            <li>
+                                <a href="logout.php" class="nav-item">Logout</a> |
+                            </li>
+                            <li>
+                            
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Shopping Cart Icon -->
+                    <a href="cart.php" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i>My Cart <sup>'. $cartCount .'</sup></a>
+
+                </div>
+                </nav>          
+            </header>';
 
 include('customer_message.php');
 } else {
     echo '
             <header>
-                <h1>Cocina ni Pao</h1>
-                <nav>
-                    <a href="homepage.php">Home</a> |
-                    <a href="about.php">About</a> |
-                    <a href="order.php">Order</a> |
-                    <a href="help_support.php">Contact</a> |
-                    <a href="login.php">Login</a>
-                </nav>
-                <!-- Shopping Cart Icon -->
-                <a href="cart.php" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i><sup></sup></a>
-            </header>
-            ';
+                <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container" id="nav-container" style="text-align:right;">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <h1>Cocina ni Pao</h1>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto" style="gap:5rem">
+                            <li>
+                                <a href="homepage.php" class="nav-item">Home</a> |
+                            </li>
+                            <li>
+                                <a href="about.php" class="nav-item">About</a> |
+                            </li>
+                            <li>
+                                <a href="order.php" class="nav-item">Order</a> |
+                            </li>
+                            <li>
+                                <a href="help_support.php" class="nav-item">Contact</a> |
+                            </li>
+                            <li>
+                                <a href="login.php" class="nav-item">Login</a> |
+                            </li>
+                            <li>
+                                <a href="register.php" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i>Sign Up<sup></sup></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                </nav>          
+            </header>';
 }
 ?>
 
