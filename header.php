@@ -42,7 +42,7 @@ session_start();
             color: #5a5a5a; 
         }
 
-        .navbar-nav.ms-auto {
+        .navbar-nav {
             gap: 3rem;
         }
 
@@ -83,8 +83,8 @@ if (isset($_SESSION["uid"])) {
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <h1>Cocina ni Pao</h1>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto">
+                    <div class="collapse navbar-collapse" id="navbarNav" style="wdith:100%">
+                        <ul class="navbar-nav">
                             <li>
                                 <a href="homepage.php" class="nav-item">Home</a> |
                             </li>
@@ -127,7 +127,7 @@ include('customer_message.php');
                     </button>
                     <h1>Cocina ni Pao</h1>
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav ms-auto" style="gap:5rem">
+                        <ul class="navbar-nav" style="gap:5rem">
                             <li>
                                 <a href="homepage.php" class="nav-item">Home</a> |
                             </li>
