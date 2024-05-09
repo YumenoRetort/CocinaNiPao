@@ -49,6 +49,12 @@ session_start();
         .nav-item {
             font-weight: medium;
             font-size: 18px;
+            transition: all 0.3s;
+        }
+        .nav-item:hover {
+            font-weight: bold;
+            transform: scale(1.5);
+            text-decoration: none;
         }
 
         .cart {
@@ -56,10 +62,20 @@ session_start();
             color: #efeae3;
             padding: 10px 20px;
             border-radius: 53px;
+            transition: all 0.3s;
         }
-
-        #navbarNav.collapse.navbar-collapse {
-            text-align: right;
+        .cart:hover {
+            font-weight: bold;
+            transform: scale(1.2);
+            text-decoration: none;
+            color: #fff;
+        }
+        a[href="logout.php"] {
+            color: red;
+        }
+        a[href="logout.php"]:hover {
+            font-weight: bold;
+            color: red;
         }
     </style>
 </head>
@@ -86,22 +102,22 @@ if (isset($_SESSION["uid"])) {
                     <div class="collapse navbar-collapse" id="navbarNav" style="wdith:100%">
                         <ul class="navbar-nav">
                             <li>
-                                <a href="homepage.php" class="nav-item">Home</a> |
+                                <a href="homepage.php" class="nav-item">Home</a>
                             </li>
                             <li>
-                                <a href="about.php" class="nav-item">About</a> |
+                                <a href="about.php" class="nav-item">About</a>
                             </li>
                             <li>
-                                <a href="order.php" class="nav-item">Order</a> |
+                                <a href="order.php" class="nav-item">Order</a>
                             </li>
                             <li>
-                                <a href="help_support.php" class="nav-item">Contact</a> |
+                                <a href="help_support.php" class="nav-item">Contact</a>
                             </li>
                             <li>
-                                <a style="font-size: 18px">'. $row["customer_name"] . '</a> |
+                                <a style="font-size: 18px">Hello, '. $row["customer_name"] . '!</a>
                             </li>
                             <li>
-                                <a href="logout.php" class="nav-item">Logout</a> |
+                                <a href="logout.php" class="nav-item">Logout</a>
                             </li>
                             <li>
                             
@@ -129,19 +145,19 @@ include('customer_message.php');
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav" style="gap:5rem">
                             <li>
-                                <a href="homepage.php" class="nav-item">Home</a> |
+                                <a href="homepage.php" class="nav-item">Home</a>
                             </li>
                             <li>
-                                <a href="about.php" class="nav-item">About</a> |
+                                <a href="about.php" class="nav-item">About</a>
                             </li>
                             <li>
-                                <a href="order.php" class="nav-item">Order</a> |
+                                <a href="order.php" class="nav-item">Order</a>
                             </li>
                             <li>
-                                <a href="help_support.php" class="nav-item">Contact</a> |
+                                <a href="help_support.php" class="nav-item">Contact</a>
                             </li>
                             <li>
-                                <a href="login.php" class="nav-item">Login</a> |
+                                <a href="login.php" class="nav-item">Login</a>
                             </li>
                             <li>
                                 <a href="register.php" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i>Sign Up<sup></sup></a>

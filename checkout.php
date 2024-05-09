@@ -73,13 +73,15 @@ mysqli_close($con);
             text-align: center;
             margin-bottom: 20px;
         }
-        .container {
+        .checkout {
             margin-top: 100px;
             background-color: white;
             padding: 20px;
             border-radius: 35px;
             max-width: 550px;
             font-size: 35px;
+            float: middle;
+            margin-left: 450px;
         }
         #overall_total_price {
             color: #474747;
@@ -111,7 +113,7 @@ mysqli_close($con);
     </style>
 </head>
 <body>
-<div class="container">
+<div class="checkout">
     <h2 id="payment-header">Payment</h2>
     <!-- Display overall total price -->
     <div id="overall_total_price">Total Price: ₱<b><?php echo $total_price ?></b></div>
