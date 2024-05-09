@@ -20,11 +20,12 @@ session_start();
 
         header {
             font-family: "DM Sans", sans-serif;
+            background-color: #efeae3;
+            padding: 20px 0;
         }
 
         .navbar {
-            background-color: #efeae3;;
-            height: 150px;
+            height: 110px; /* Adjust height as needed */
         }
 
         .navbar-nav {
@@ -49,6 +50,12 @@ session_start();
         .nav-item {
             font-weight: medium;
             font-size: 18px;
+            transition: all 0.3s;
+        }
+        .nav-item:hover {
+            font-weight: bold;
+            transform: scale(1.5);
+            text-decoration: none;
         }
 
         .cart {
@@ -56,10 +63,20 @@ session_start();
             color: #efeae3;
             padding: 10px 20px;
             border-radius: 53px;
+            transition: all 0.3s;
         }
-
-        #navbarNav.collapse.navbar-collapse {
-            text-align: right;
+        .cart:hover {
+            font-weight: bold;
+            transform: scale(1.2);
+            text-decoration: none;
+            color: #fff;
+        }
+        a[href="logout.php"] {
+            color: red;
+        }
+        a[href="logout.php"]:hover {
+            font-weight: bold;
+            color: red;
         }
     </style>
 </head>
@@ -83,25 +100,25 @@ if (isset($_SESSION["uid"])) {
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <h1>Cocina ni Pao</h1>
-                    <div class="collapse navbar-collapse" id="navbarNav" style="wdith:100%">
+                    <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li>
-                                <a href="homepage.php" class="nav-item">Home</a> |
+                                <a href="homepage.php" class="nav-item">Home</a>
                             </li>
                             <li>
-                                <a href="about.php" class="nav-item">About</a> |
+                                <a href="about.php" class="nav-item">About</a>
                             </li>
                             <li>
-                                <a href="order.php" class="nav-item">Order</a> |
+                                <a href="order.php" class="nav-item">Order</a>
                             </li>
                             <li>
-                                <a href="help_support.php" class="nav-item">Contact</a> |
+                                <a href="help_support.php" class="nav-item">Contact</a>
                             </li>
                             <li>
-                                <a style="font-size: 18px">'. $row["customer_name"] . '</a> |
+                                <a style="font-size: 18px">Hello, '. $row["customer_name"] . '!</a>
                             </li>
                             <li>
-                                <a href="logout.php" class="nav-item">Logout</a> |
+                                <a href="logout.php" class="nav-item">Logout</a>
                             </li>
                             <li>
                             
@@ -110,41 +127,39 @@ if (isset($_SESSION["uid"])) {
                     </div>
 
                     <!-- Shopping Cart Icon -->
-                    <a href="cart.php" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i>My Cart <sup>'. $cartCount .'</sup></a>
+                    <a href="cart.php" class="nav-item cart"><i class="fas fa-shopping-cart"></i>My Cart <sup>'. $cartCount .'</sup></a>
 
                 </div>
                 </nav>          
             </header>';
-
-include('customer_message.php');
 } else {
     echo '
             <header>
                 <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="container" id="nav-container" style="text-align:right;">
+                <div class="container" id="nav-container">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <h1>Cocina ni Pao</h1>
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav" style="gap:5rem">
+                        <ul class="navbar-nav">
                             <li>
-                                <a href="homepage.php" class="nav-item">Home</a> |
+                                <a href="homepage.php" class="nav-item">Home</a>
                             </li>
                             <li>
-                                <a href="about.php" class="nav-item">About</a> |
+                                <a href="about.php" class="nav-item">About</a>
                             </li>
                             <li>
-                                <a href="order.php" class="nav-item">Order</a> |
+                                <a href="order.php" class="nav-item">Order</a>
                             </li>
                             <li>
-                                <a href="help_support.php" class="nav-item">Contact</a> |
+                                <a href="help_support.php" class="nav-item">Contact</a>
                             </li>
                             <li>
-                                <a href="login.php" class="nav-item">Login</a> |
+                                <a href="login.php" class="nav-item">Login</a>
                             </li>
                             <li>
-                                <a href="register.php" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i>Sign Up<sup></sup></a>
+                                <a href="register.php" class="nav-item cart"><i class="fas fa-shopping-cart"></i>Sign Up<sup></sup></a>
                             </li>
                         </ul>
                     </div>
@@ -154,6 +169,7 @@ include('customer_message.php');
 }
 ?>
 
+<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="js/script.js"></script>
 
 </body>
