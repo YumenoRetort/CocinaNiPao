@@ -53,10 +53,14 @@ include 'connect.php';?>
       margin-top: 0px;
       margin: 0 auto;
       border: none;
+      background-color: #474747;
+      color: #fff;
     }
     .btn-submit:hover {
       scale: 1.1;
       font-weight: bold;
+      background-color: #474747;
+      color: #fff;
     }
     .select_user {
       width: 100%;
