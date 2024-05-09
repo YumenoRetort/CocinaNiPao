@@ -104,7 +104,7 @@ if (mysqli_num_rows($result) > 0) {
                 }
                 echo '</select>';
                 echo '</td>';
-                echo '<td><input type="date" name="delivery_date[]" value="' . $current_delivery_date . '"></td>'; // Input field for Delivery Date
+                echo '<td><input type="date" name="delivery_date[]" id="delivery_date" value="' . $current_delivery_date . '" min="' . date('Y-m-d') . '"></td>'; // Input field for Delivery Date
                 echo '</tr>';
                 echo '</tbody>';
 
@@ -164,12 +164,19 @@ if (mysqli_num_rows($result) > 0) {
     }
     echo '</select>';
     echo '</td>';
-    echo '<td><input type="date" name="delivery_date[]" value="' . $current_delivery_date . '"></td>'; // Input field for Delivery Date
+    echo '<td><input type="date" name="delivery_date[]" id="delivery_date" value="' . $current_delivery_date . '" min="' . date('Y-m-d') . '"></td>'; // Input field for Delivery Date
     echo '</tr>';
     echo '</tbody>';
     echo '</table>';
     echo '</div>';
 }
 ?>
+<script>
+    // Get the input element for delivery date
+    var deliveryDateInput = document.getElementById('delivery_date');
+
+    // Set the minimum date to today
+    deliveryDateInput.min = new Date().toISOString().split("T")[0];
+</script>
 </body>
 </html>
