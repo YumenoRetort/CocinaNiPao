@@ -24,7 +24,7 @@ if(isset($_SESSION['uid'])) {
         echo '<h1 style="font-size: 60px;font-weight: bold;text-align:center; font-size: 96px; color: #474747">My Cart</h1>';
         
         if (!$result || mysqli_num_rows($result) <= 0){
-            echo "Your cart is empty.";
+            echo '<div class="alert alert-danger" role="alert">Your cart is empty.</div>';
         } else {
             // If there are items in the cart, display them
             while ($row = mysqli_fetch_assoc($result)) {
@@ -106,6 +106,17 @@ if(isset($_SESSION['uid'])) {
                         font-weight: bold;
                         font-size: 40px;
                         color: black;
+                    }
+
+                    .alert {
+                        font-size:18px;
+                        padding: 10px;
+                        border-radius: 5px;
+                        margin: 1rem 12rem;
+                    }
+
+                    .alert-danger {
+                        background-color: #f8d7da;
                     }
 
                 </style>

@@ -9,15 +9,17 @@
 
     .floating-div {
     position: fixed;
-    top: 20px; /* Adjust as needed */
+    bottom: 20px; /* Adjust as needed */
     right: 20px; /* Adjust as needed */
     z-index: 999; /* Ensure it appears above other content */
-    background-color: #ffffff;
-    border: 1px solid #cccccc;
+    background-color: #474747;
+    border: 1px solid #474747;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 25px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for better visibility */
-    color:powderblue;
+    color: #FAB438;
+    font-weight: 200px;
+    text-align: center;
   }
 
     </style>

@@ -28,7 +28,7 @@ if(isset($_POST['add_to_cart'])) {
                     $cartCount = $row['count'];
                 }
                 $_SESSION['cartCount'] = $cartCount; // Store cart count in session
-                header("Location: ".$_SERVER['REQUEST_URI']); // Redirect to the same page
+                header("Location: ".$_SERVER['REQUEST_URI']); 
                 exit();
             } else {
                 echo "Error: " . mysqli_error($con);
@@ -55,20 +55,12 @@ if(isset($_POST['add_to_cart'])) {
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
-    <link rel = "stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
         body {
             background-color: #efeae4;
-            font-family: "DM Sans", sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        h1 {
-            font-size: 60px;
-            font-weight: bold;
+            font-family: 'Poppins', sans-serif;
         }
 
         .card {
@@ -80,6 +72,7 @@ if(isset($_POST['add_to_cart'])) {
         .container-fluid {
             max-width: 80%;
             margin: 0 auto;
+            font-family: "DM Sans", sans-serif;
         }
 
         .card-img-top {
@@ -140,7 +133,7 @@ if(isset($_POST['add_to_cart'])) {
 <body>
     
     <div class="container-fluid" width="80%">
-        <h1>Products</h1>
+        <h1 style="font-size: 60px;font-weight: bold;">Products</h1>
 
         <div class="row gx-2 gx-lg-5 row-cols-1 row-cols-md-2 row-cols-lg-2 row-cols-xl-3 justify-content-center">
             <?php 

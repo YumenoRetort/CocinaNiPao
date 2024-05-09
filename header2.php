@@ -115,8 +115,6 @@ if (isset($_SESSION["uid"])) {
                 </div>
                 </nav>          
             </header>';
-
-include('customer_message.php');
 } else {
     echo '
             <header>
