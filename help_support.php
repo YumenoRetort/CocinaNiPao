@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<?php include('header.php'); ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cocina ni Pao | Contact Us</title>
@@ -55,14 +56,12 @@
 		.btn-primary:hover {
 			transform: scale(1.1);
 			background-color: #999b85;
+            font-weight: bold;
 		}
 
     </style>
 </head>
 <body>
-
-
-    <?php include('header.php'); ?>
     
     <div class="container">
         <div class="row">
