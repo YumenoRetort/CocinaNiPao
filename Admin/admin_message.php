@@ -6,10 +6,81 @@ include 'connect.php';?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messages</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
     <style>
-    .major_container {
-      width: 50%;
+    #left_container {
+      width: 45%;
       float: left;
+      border-radius: 35px;
+      border-width: 1px;
+      background-color: #fab438;
+      padding: 40px;
+      margin-top: 50px;
+      border: none;
+      margin-left: 20px
+    }
+
+    #right_container{
+      width: 50%;
+      float: right;
+      border-radius: 35px;
+      border-width: 1px;
+      background-color: #fab438;
+      padding: 40px;
+      margin-top: 50px;
+      border: none;
+      align-items: left;
+      margin-right: 20px;
+    }
+    body {
+      background-color: #EFEAE4;
+      font-family: 'Poppins', sans-serif;
+    }
+    h2 {
+      font-size: 35px;
+      font-weight: bold;
+    }
+    .btn-submit {
+      width: 100%;
+      border-radius: 35px;
+      transition: all 0.3s;
+      padding: 10px;
+      margin-top: 0px;
+      margin: 0 auto;
+      border: none;
+    }
+    .btn-submit:hover {
+      scale: 1.1;
+      font-weight: bold;
+    }
+    .select_user {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .select_user {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    textarea[name="message"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+      margin-bottom: 10px;
     }
     </style>
 </head>
@@ -38,7 +109,8 @@ include 'connect.php';?>
         }
         ?>
         </select>
-      <input type="submit" value = "Message" name="user_button">
+        <br>
+      <input type="submit" value = "Message" name="user_button" class="btn-submit">
     </form>
     <?php
     if(isset($_POST["user_button"])){
@@ -59,7 +131,7 @@ include 'connect.php';?>
     <div style="position: relative;"><!--This is where new messages will post from-->
       <form method="POST">
         <textarea name="message" rows="4" cols="40" placeholder="Type your message here"></textarea><br>
-        <input type="submit" value="Send Message" name="message_button">
+        <input type="submit" value="Send Message" name="message_button" class="btn-submit">
       </form>
     </div>
   </div>
