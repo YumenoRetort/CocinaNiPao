@@ -20,12 +20,11 @@ session_start();
 
         header {
             font-family: "DM Sans", sans-serif;
-            background-color: #efeae3;
-            padding: 20px 0;
         }
 
         .navbar {
-            height: 110px; /* Adjust height as needed */
+            background-color: #efeae3;;
+            height: 150px;
         }
 
         .navbar-nav {
@@ -100,7 +99,7 @@ if (isset($_SESSION["uid"])) {
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <h1>Cocina ni Pao</h1>
-                    <div class="collapse navbar-collapse" id="navbarNav">
+                    <div class="collapse navbar-collapse" id="navbarNav" style="wdith:100%">
                         <ul class="navbar-nav">
                             <li>
                                 <a href="homepage.php" class="nav-item">Home</a>
@@ -127,22 +126,24 @@ if (isset($_SESSION["uid"])) {
                     </div>
 
                     <!-- Shopping Cart Icon -->
-                    <a href="cart.php" class="nav-item cart"><i class="fas fa-shopping-cart"></i>My Cart <sup>'. $cartCount .'</sup></a>
+                    <a href="cart.php" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i>My Cart <sup>'. $cartCount .'</sup></a>
 
                 </div>
                 </nav>          
             </header>';
+
+include('customer_message.php');
 } else {
     echo '
             <header>
                 <nav class="navbar navbar-expand-lg navbar-light">
-                <div class="container" id="nav-container">
+                <div class="container" id="nav-container" style="text-align:right;">
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <h1>Cocina ni Pao</h1>
                     <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav">
+                        <ul class="navbar-nav" style="gap:5rem">
                             <li>
                                 <a href="homepage.php" class="nav-item">Home</a>
                             </li>
@@ -159,7 +160,7 @@ if (isset($_SESSION["uid"])) {
                                 <a href="login.php" class="nav-item">Login</a>
                             </li>
                             <li>
-                                <a href="register.php" class="nav-item cart"><i class="fas fa-shopping-cart"></i>Sign Up<sup></sup></a>
+                                <a href="register.php" class="cart"><i class="fa-solid fa-cart-shopping" style="width: 50px; height: 50px;"></i>Sign Up<sup></sup></a>
                             </li>
                         </ul>
                     </div>
@@ -169,7 +170,6 @@ if (isset($_SESSION["uid"])) {
 }
 ?>
 
-<script src="https://kit.fontawesome.com/a076d05399.js"></script>
 <script src="js/script.js"></script>
 
 </body>
