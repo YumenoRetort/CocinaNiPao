@@ -28,7 +28,7 @@ if(isset($_POST['add_to_cart'])) {
                     $cartCount = $row['count'];
                 }
                 $_SESSION['cartCount'] = $cartCount; // Store cart count in session
-                header("Location: ".$_SERVER['REQUEST_URI']); // Redirect to the same page
+                header("Location: ".$_SERVER['REQUEST_URI']); 
                 exit();
             } else {
                 echo "Error: " . mysqli_error($con);
