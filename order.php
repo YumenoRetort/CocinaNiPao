@@ -10,7 +10,7 @@
 <body>
 	
     <?php 
-    include('header.php');
+    include('header2.php');
 	include('display_product.php');
 	?>
 	<script src="js/script.js"></script>
